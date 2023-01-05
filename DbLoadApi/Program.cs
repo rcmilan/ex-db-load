@@ -1,3 +1,5 @@
+using DbLoadApi.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,29 +18,47 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/sample", () =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var player = new Player
+    {
+        Id = 1,
+        Health = 420,
+        Job = DbLoadApi.Entities.Enums.PlayerJob.Warrior,
+        Inventory = new List<PlayerInventory>
+        {
+            new PlayerInventory
+            {
+                IsActive= true,
+                Item = new Weapon
+                {
+                    Id = 1,
+                    Damage = 666,
+                    Name = "Espada Top",
+                    Type = DbLoadApi.Entities.Enums.WeaponType.Sword,
+                    Enchantments = new List<Enchantment>
+                    {
+                        new Enchantment
+                        {
+                            Id = Guid.NewGuid(),
+                            Type = DbLoadApi.Entities.Enums.EnchantmentType.Buff,
+                            Description = "Ataque + 10"
+                        },
+                        new Enchantment
+                        {
+                            Id = Guid.NewGuid(),
+                            Type = DbLoadApi.Entities.Enums.EnchantmentType.Debuff,
+                            Description = "Ataque - 10"
+                        }
+                    }
+                }
+            }
+        }
+    };
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    return player;
 })
-.WithName("GetWeatherForecast")
+.WithName("Sample")
 .WithOpenApi();
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
