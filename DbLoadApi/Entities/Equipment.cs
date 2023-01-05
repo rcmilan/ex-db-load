@@ -1,9 +1,10 @@
 ﻿namespace DbLoadApi.Entities
 {
-    public class Weapon : IEntity<int>
+    public class Equipment : IEntity<int>
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
-        public int Damage { get; set; }
+        public int Defense { get; set; }
     }
 }
