@@ -1,3 +1,4 @@
+using DbLoadApi.Configurations;
 using DbLoadApi.Samples;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+
+builder.Services.AddServices(connString);
 
 var app = builder.Build();
 
