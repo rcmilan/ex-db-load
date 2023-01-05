@@ -7,6 +7,7 @@ namespace DbLoadApi.Configurations
     {
         public MyDbContext(DbContextOptions options) : base(options)
         {
+            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
