@@ -1,4 +1,4 @@
-using DbLoadApi.Entities;
+using DbLoadApi.Samples;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,41 +20,7 @@ app.UseHttpsRedirection();
 
 app.MapGet("/sample", () =>
 {
-    var player = new Player
-    {
-        Id = 1,
-        Health = 420,
-        Job = DbLoadApi.Entities.Enums.PlayerJob.Warrior,
-        Inventory = new List<PlayerInventory>
-        {
-            new PlayerInventory
-            {
-                IsActive= true,
-                Item = new Weapon
-                {
-                    Id = 1,
-                    Damage = 666,
-                    Name = "Espada Top",
-                    Type = DbLoadApi.Entities.Enums.WeaponType.Sword,
-                    Enchantments = new List<Enchantment>
-                    {
-                        new Enchantment
-                        {
-                            Id = Guid.NewGuid(),
-                            Type = DbLoadApi.Entities.Enums.EnchantmentType.Buff,
-                            Description = "Ataque + 10"
-                        },
-                        new Enchantment
-                        {
-                            Id = Guid.NewGuid(),
-                            Type = DbLoadApi.Entities.Enums.EnchantmentType.Debuff,
-                            Description = "Ataque - 10"
-                        }
-                    }
-                }
-            }
-        }
-    };
+    var player = PlayerSample.Player;
 
     return player;
 })
