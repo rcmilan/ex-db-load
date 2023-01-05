@@ -6,7 +6,7 @@ namespace DbLoadApi.Samples
     {
         public static readonly Player Player = new()
         {
-            Id = 1,
+            Id = -1,
             Health = 420,
             Job = Entities.Enums.PlayerJob.Warrior,
             Inventory = new List<PlayerInventory>
@@ -16,7 +16,7 @@ namespace DbLoadApi.Samples
                     IsActive= true,
                     Item = new Weapon
                     {
-                        Id = 1,
+                        Id = -1,
                         Damage = 666,
                         Name = "Espada Top",
                         Type = Entities.Enums.WeaponType.Sword,
