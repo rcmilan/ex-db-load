@@ -1,4 +1,4 @@
-﻿namespace DbLoadApi.Entities
+﻿namespace DbLoadApi.Entities.Base
 {
     public interface IEntity
     {
