@@ -30,6 +30,18 @@ namespace DbLoadApi.Configurations
             modelBuilder.Entity<Player>()
                 .OwnsMany(p => p.EquipmentInventory);
 
+            modelBuilder.Entity<Player>()
+                .Property(p => p.Job)
+                .HasConversion<string>();
+
+            modelBuilder.Entity<Weapon>()
+                .Property(p => p.Type)
+                .HasConversion<string>();
+
+            modelBuilder.Entity<Equipment>()
+                .Property(p => p.Type)
+                .HasConversion<string>();
+
             base.OnModelCreating(modelBuilder);
         }
     }
