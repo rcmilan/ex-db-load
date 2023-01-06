@@ -1,5 +1,6 @@
 using DbLoadApi.Configurations;
 using DbLoadApi.Samples;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,11 +26,16 @@ app.UseHttpsRedirection();
 
 app.MapGet("/sample", () =>
 {
-    var player = PlayerSample.Player;
-
-    return player;
+    return PlayerSample.Player;
 })
 .WithName("Sample")
+.WithOpenApi();
+
+app.MapGet("/player", ([FromQuery] int id) =>
+{
+    return "";
+})
+.WithName("Player")
 .WithOpenApi();
 
 app.Run();

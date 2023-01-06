@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MySqlConnector;
 
 namespace DbLoadApi.Configurations
 {
@@ -7,12 +6,18 @@ namespace DbLoadApi.Configurations
     {
         public static IServiceCollection AddServices(this IServiceCollection services, string connectionString)
         {
-            var mySqlConnection = new MySqlConnection(connectionString);
+            var serverVersion = new MySqlServerVersion(ServerVersion.AutoDetect(connectionString));
 
-            services
-                .AddDbContext<MyDbContext>(
-                    options => options.UseMySql(connectionString, ServerVersion.AutoDetect(mySqlConnection))
-                );
+            services.AddDbContext<MyDbContext>(options => options
+                    .UseMySql(connectionString, serverVersion)
+#if DEBUG
+                    // The following three options help with debugging, but should
+                    // be changed or removed for production.
+                    .LogTo(Console.WriteLine, LogLevel.Information)
+                    .EnableSensitiveDataLogging()
+                    .EnableDetailedErrors()
+#endif
+            );
 
             return services;
         }
