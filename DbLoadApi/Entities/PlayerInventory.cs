@@ -2,9 +2,9 @@
 
 namespace DbLoadApi.Entities
 {
-    public class PlayerInventory : IEntity
+    public class PlayerWeaponInventory : IEntity, IInventory<Weapon>
     {
-        public IEntity Item { get; set; }
+        public Weapon Inventory { get; set; }
         public bool IsActive { get; set; }
     }
 }

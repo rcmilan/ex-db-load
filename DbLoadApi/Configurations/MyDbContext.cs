@@ -20,9 +20,15 @@ namespace DbLoadApi.Configurations
 
             modelBuilder.Entity<Player>()
                 .HasKey(p => p.Id);
-            
+
             modelBuilder.Entity<Weapon>()
                 .HasKey(w => w.Id);
+
+            modelBuilder.Entity<Player>()
+                .OwnsMany(p => p.WeaponInventory);
+
+            modelBuilder.Entity<Player>()
+                .OwnsMany(p => p.EquipmentInventory);
 
             base.OnModelCreating(modelBuilder);
         }

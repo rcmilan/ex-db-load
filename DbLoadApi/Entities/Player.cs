@@ -8,7 +8,7 @@ namespace DbLoadApi.Entities
         public int Id { get; set; }
         public int Health { get; set; }
         public PlayerJob Job { get; set; }
-        public IEnumerable<PlayerInventory> Inventory { get; set; }
-        public IEnumerable<IEntity> ActiveItems => Inventory.Where(i => i.IsActive);
+        public IEnumerable<PlayerWeaponInventory> WeaponInventory { get; set; }
+        public IEnumerable<PlayerEquipmentInventory> EquipmentInventory { get; set; }
     }
 }
