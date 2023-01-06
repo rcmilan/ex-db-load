@@ -35,8 +35,7 @@ app.MapGet("/sample", () =>
 
 app.MapGet("/player", async ([FromServices] MyDbContext dbContext, [FromQuery] int id) =>
 {
-    var player = await dbContext
-        .Set<Player>()
+    var player = await dbContext.Set<Player>()
         .FindAsync(id);
 
     return player;
@@ -46,12 +45,10 @@ app.MapGet("/player", async ([FromServices] MyDbContext dbContext, [FromQuery] i
 
 app.MapPost("/player", async ([FromServices] MyDbContext dbContext, [FromBody] Player player) =>
 {
-    await dbContext
-        .Set<Player>()
+    await dbContext.Set<Player>()
         .AddAsync(player);
 
-    await dbContext
-        .SaveChangesAsync();
+    await dbContext.SaveChangesAsync();
 
     return player;
 })
