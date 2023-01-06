@@ -1,6 +1,8 @@
 using DbLoadApi.Configurations;
+using DbLoadApi.Entities;
 using DbLoadApi.Samples;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,14 +30,32 @@ app.MapGet("/sample", () =>
 {
     return PlayerSample.Player;
 })
-.WithName("Sample")
+.WithName("GetSample")
 .WithOpenApi();
 
-app.MapGet("/player", ([FromQuery] int id) =>
+app.MapGet("/player", async ([FromServices] MyDbContext dbContext, [FromQuery] int id) =>
 {
-    return "";
+    var player = await dbContext
+        .Set<Player>()
+        .FindAsync(id);
+
+    return player;
 })
-.WithName("Player")
+.WithName("FindPlayer")
+.WithOpenApi();
+
+app.MapPost("/player", async ([FromServices] MyDbContext dbContext, [FromBody] Player player) =>
+{
+    await dbContext
+        .Set<Player>()
+        .AddAsync(player);
+
+    await dbContext
+        .SaveChangesAsync();
+
+    return player;
+})
+.WithName("AddPlayer")
 .WithOpenApi();
 
 app.Run();
