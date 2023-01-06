@@ -35,11 +35,11 @@ namespace DbLoadApi.Configurations
                 .HasConversion<string>();
 
             modelBuilder.Entity<Weapon>()
-                .Property(p => p.Type)
+                .Property(w => w.Type)
                 .HasConversion<string>();
 
             modelBuilder.Entity<Equipment>()
-                .Property(p => p.Type)
+                .Property(e => e.Type)
                 .HasConversion<string>();
 
             base.OnModelCreating(modelBuilder);
