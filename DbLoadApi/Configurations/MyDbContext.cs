@@ -7,7 +7,7 @@ namespace DbLoadApi.Configurations
     {
         public MyDbContext(DbContextOptions options) : base(options)
         {
-            Database.Migrate();
+            //Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,7 +27,8 @@ namespace DbLoadApi.Configurations
                 .IsRequired();
 
             modelBuilder.Entity<Player>()
-                .Property<bool>("IsDeleted");
+                .Property<bool>("IsDeleted")
+                .HasDefaultValue(false);
 
             modelBuilder.Entity<Player>()
                 .HasQueryFilter(p => EF.Property<bool>(p, "IsDeleted") == false);
