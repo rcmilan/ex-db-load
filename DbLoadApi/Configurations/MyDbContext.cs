@@ -21,6 +21,11 @@ namespace DbLoadApi.Configurations
             modelBuilder.Entity<Player>()
                 .HasKey(p => p.Id);
 
+            modelBuilder.Entity<Player>()
+                .Property(p => p.Health)
+                .HasDefaultValue(100)
+                .IsRequired();
+
             modelBuilder.Entity<Weapon>()
                 .HasKey(w => w.Id);
 
