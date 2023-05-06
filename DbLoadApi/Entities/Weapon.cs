@@ -9,6 +9,6 @@ namespace DbLoadApi.Entities
         public string Name { get; set; }
         public int Damage { get; set; }
         public WeaponType Type { get; set; }
-        public IEnumerable<Enchantment> Enchantments { get; set; }
+        public virtual IEnumerable<Enchantment> Enchantments { get; set; }
     }
 }

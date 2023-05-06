@@ -10,6 +10,7 @@ namespace DbLoadApi.Configurations
 
             services.AddDbContext<MyDbContext>(options => options
                     .UseMySql(connectionString, serverVersion)
+                    .UseLazyLoadingProxies()
 #if DEBUG
                     // The following three options help with debugging, but should
                     // be changed or removed for production.

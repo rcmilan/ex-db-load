@@ -8,7 +8,7 @@ namespace DbLoadApi.Entities
         public int Id { get; set; }
         public int Health { get; set; }
         public PlayerJob Job { get; set; }
-        public IEnumerable<PlayerWeaponInventory> WeaponInventory { get; set; }
-        public IEnumerable<PlayerEquipmentInventory> EquipmentInventory { get; set; }
+        public virtual IEnumerable<PlayerWeaponInventory> WeaponInventory { get; set; }
+        public virtual IEnumerable<PlayerEquipmentInventory> EquipmentInventory { get; set; }
     }
 }
