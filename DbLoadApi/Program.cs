@@ -1,6 +1,5 @@
 using DbLoadApi.Configurations;
 using DbLoadApi.Entities;
-using DbLoadApi.Samples;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
