@@ -5,6 +5,5 @@ namespace DbLoadApi.Entities
     public class PlayerWeaponInventory : IEntity, IInventory<Weapon>
     {
         public virtual Weapon Inventory { get; set; }
-        public bool IsActive { get; set; }
     }
 }

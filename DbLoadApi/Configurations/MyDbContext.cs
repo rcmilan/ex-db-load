@@ -26,6 +26,12 @@ namespace DbLoadApi.Configurations
                 .HasDefaultValue(100)
                 .IsRequired();
 
+            modelBuilder.Entity<Player>()
+                .Property<bool>("IsDeleted");
+
+            modelBuilder.Entity<Player>()
+                .HasQueryFilter(p => EF.Property<bool>(p, "IsDeleted") == false);
+
             modelBuilder.Entity<Weapon>()
                 .HasKey(w => w.Id);
 
