@@ -26,13 +26,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/sample", () =>
-{
-    return PlayerSample.Player;
-})
-.WithName("GetSample")
-.WithOpenApi();
-
 app.MapGet("/player", async ([FromServices] MyDbContext dbContext, [FromQuery] int id) =>
 {
     var player = await dbContext.Set<Player>()
